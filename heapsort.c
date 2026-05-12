@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+
 // ---------- MAX HEAPIFY ----------
 void maxHeapify(int arr[], int n, int i) {
     int largest = i;
@@ -102,17 +103,25 @@ void heapSortDescending(int arr[], int n) {
     }
 }
 
-// ---------- UTILITY ----------
-void printArray(int arr[], int n) {
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
-}
+// // ---------- UTILITY ----------
+// void printArray(int arr[], int n) {
+//     for (int i = 0; i < n; i++)
+//         printf("%d ", arr[i]);
+//     printf("\n");
+// }
 
 // ---------- MAIN ----------
 int main() {
-    int arr[] = {12, 3, 19, 6, 15, 8};
-    int n = sizeof(arr)/sizeof(arr[0]);
+    srand(time(NULL));
+    int n = 100000;
+    int arr[n];
+    
+    // Generate 1000 random integers between 1 and 10000
+    for (int i = 0; i < n; i++) {
+        arr[i] = rand() % 10000 + 1;
+    }
+
+    
 
     clock_t start, end;
 
@@ -123,7 +132,7 @@ int main() {
     heapSortBottomUp(arr1, n);
     end = clock();
     printf("Bottom-up ascending: ");
-    printArray(arr1, n);
+    
     printf("Time: %f seconds\n", (double)(end-start)/CLOCKS_PER_SEC);
 
     // Top-down
@@ -133,7 +142,7 @@ int main() {
     heapSortTopDown(arr2, n);
     end = clock();
     printf("Top-down ascending: ");
-    printArray(arr2, n);
+   
     printf("Time: %f seconds\n", (double)(end-start)/CLOCKS_PER_SEC);
 
     // Min-heap descending
@@ -143,7 +152,7 @@ int main() {
     heapSortDescending(arr3, n);
     end = clock();
     printf("Min-heap descending: ");
-    printArray(arr3, n);
+    
     printf("Time: %f seconds\n", (double)(end-start)/CLOCKS_PER_SEC);
 
     return 0;
